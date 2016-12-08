@@ -1,0 +1,20 @@
+import numpy as np
+
+f = open('cascades_train.txt', 'r')
+
+graph = {}
+i = 0
+
+for episode in f.readlines():
+    listinf = episode.split(';')
+    i += 1
+
+    for couple in listinf:
+        if couple[0] != '\r':
+            user, time = map(lambda x:int(float(x)), couple.split(':'))
+            if time in graph:
+                graph[time].append(user)
+            else:
+                graph[time] = [user]
+    
+
